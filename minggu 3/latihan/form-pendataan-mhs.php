@@ -26,10 +26,11 @@ td, th {
   <tr>
     <td>Program Studi</td>
     <td>
-	<select name="progam">
-		<option value="Teknik Informatika">Teknik Informatika</option>
-		<option value="Sistem Informatika">Sistem Informatika</option>
-		<option value="DKV">DKV</option>
+	<select name="progam" >
+		<option value=>Pilih Data</option>
+		<option value="Teknik Informatika S1">A11</option>
+		<option value="Sistem Informasi S1">A12</option>
+		<option value="Teknik Informatika D3">A22</option>
 	</select>
 	</td>
   </tr>
@@ -49,7 +50,7 @@ td, th {
     <td>Catatan Khusus</td>
     <td>
 	<input type="checkbox" name="catatan1" value="Kehadiran >= 70 %" checked> Kehadiran >= 70 %<br>
-	<input type="checkbox" name="catatan2" value="interaktif dikelas"> Interaktif dikelas<br>
+	<input type="checkbox" name="catatan2" value="Interaktif dikelas"> Interaktif dikelas<br>
 	<input type="checkbox" name="catatan3" value="Tidak terlambat mengumpulkan tugas">Tidak terlambat mengumpulkan tugas<br>
 	</td>
   </tr>
@@ -68,7 +69,7 @@ if (isset($_POST['Input'])) {
 	$uts = $_POST['uts'];
 	$uas = $_POST['uas'];
 	//$catatan = $_POST['catatan'];
-	$nilaiakhir = ($_POST['tugas']+$_POST['uts']+$_POST['uas'])/3;
+	$nilaiakhir = 0.4*$_POST['tugas']+0.3*$_POST['uts']+0.3*$_POST['uas'];
 }
 ?>
 
@@ -117,7 +118,7 @@ tr:nth-child(even) {
 	</td>
 	<td>
 	<?php
-	if ($nilaiakhir > 50){
+	if ($nilaiakhir > 60){
 		echo "LULUS";
 	}
 	else {
