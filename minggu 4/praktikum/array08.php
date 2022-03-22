@@ -16,4 +16,5 @@ reset($arrNilai);
 echo "<b>Array setelah pengurutan dengan krsort()</b>";
 echo "<pre>";
 print_r($arrNilai);
-echo "</pre>"; ?>
+echo "</pre>"; 
+?>
