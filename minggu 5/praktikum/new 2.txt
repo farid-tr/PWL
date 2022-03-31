@@ -1,0 +1,50 @@
+#1
+create database pendaftaran;
+#2
+create table data_diri (no int(3), nama varchar(35), alamat varchar(60),email varchar(40), no_telepon varchar(15), sex char(1));
+#3
+desc data_diri;
+#4
+drop table data_diri;
+#5
+create table pribadi (kd_pribadi CHAR(3) primary key,panggilan char(4), nama varchar(35), email varchar(50),sex char(1), UNIQUE (kd_pribadi,panggilan));
+#6
+rename table pribadi to data_pribadi;
+#7
+alter table data_pribadi add gol_darah char(1);
+#8
+desc data_pribadi;
+#9
+alter table data_pribadi drop gol_darah;
+
+
+ Buatlah tabel tb_tamu, dengan struktur tabel sebagai berikut:
+Field Type Length Keterangan
+No Int 3 Primary key
+Nama Varchar 35
+Alamat Varchar 60
+Email Varchar 40
+No_telp Varchar 15
+
+create table tb_tamu (no int(3), nama varchar(35), alamat varchar(60),email varchar(40), no_telepon varchar(15));
+
+
+Jalankan perintah dibawah ini:
+#1
+insert into tb_tamu values('1','Boi trimoyo','ujung berung','bo_i77@yahoo.com','085613548789');
+#2
+update tb_tamu set nama='irfan nurhudin' where nama="Boi trimoyo";
+#3
+select * from tb_tamu;
+#4
+insert into tb_tamu values('2','Wasmui','Jatimulyo','boy@gmail.com','084567897890');insert into tb_tamu values('3','Sumarno','Surodadi','man@ymail.com','082469823578');insert into tb_tamuvalues('4','Sukamto','Kradenan','doi@gmail.com','083648763845');
+#5
+delete from tb_tamu where no='4';
+#6
+select no, nama, alamat from tb_tamu;
+#7
+select * from tb_tamu where alamat ='Kradenan';
+#8
+select * from tb_tamu where nama like '%su%';
+#9
+select * from tb_tamu order by nama;

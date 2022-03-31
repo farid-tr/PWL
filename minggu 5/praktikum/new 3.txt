@@ -1,0 +1,264 @@
+
+Setting environment for using XAMPP for Windows.
+Farid@DESKTOP-POD4B38 d:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database pendaftaran;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> create table data_diri (
+    -> no int(3), nama varchar(35), alamat varchar(60),
+    -> email varchar(40), no_telepon varchar(15), sex char(1));
+ERROR 1046 (3D000): No database selected
+MariaDB [(none)]> use database pendaftaran
+ERROR 1049 (42000): Unknown database 'database'
+MariaDB [(none)]> use pendaftaran
+Database changed
+MariaDB [pendaftaran]> create table data_diri (no int(3), nama varchar(35), alamat varchar(60),email varchar(40), no_telepon varchar(15), sex char(1));
+Query OK, 0 rows affected (0.027 sec)
+
+MariaDB [pendaftaran]> desc data_diri;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| no         | int(3)      | YES  |     | NULL    |       |
+| nama       | varchar(35) | YES  |     | NULL    |       |
+| alamat     | varchar(60) | YES  |     | NULL    |       |
+| email      | varchar(40) | YES  |     | NULL    |       |
+| no_telepon | varchar(15) | YES  |     | NULL    |       |
+| sex        | char(1)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.013 sec)
+
+MariaDB [pendaftaran]> drop table data_diri;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [pendaftaran]> create table pribadi (kd_pribadi CHAR(3) primary key,panggilan char(4), nama varchar(35), email varchar(50),sex char(1), UNIQUE (kd_pribadi,panggilan));
+Query OK, 0 rows affected (0.031 sec)
+
+MariaDB [pendaftaran]> rename table pribadi to data_pribadi;
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [pendaftaran]> alter table data_pribadi add gol_darah char(1);
+Query OK, 0 rows affected (0.013 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [pendaftaran]> desc data_pribadi;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| kd_pribadi | char(3)     | NO   | PRI | NULL    |       |
+| panggilan  | char(4)     | YES  |     | NULL    |       |
+| nama       | varchar(35) | YES  |     | NULL    |       |
+| email      | varchar(50) | YES  |     | NULL    |       |
+| sex        | char(1)     | YES  |     | NULL    |       |
+| gol_darah  | char(1)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.018 sec)
+
+MariaDB [pendaftaran]> alter table data_pribadi drop gol_darah;
+Query OK, 0 rows affected (0.013 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [pendaftaran]> Bye
+
+Farid@DESKTOP-POD4B38 d:\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 14
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> desc data_pribadi;
+ERROR 1046 (3D000): No database selected
+MariaDB [(none)]> use pendaftaran
+Database changed
+MariaDB [pendaftaran]> desc data_pribadi;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| kd_pribadi | char(3)     | NO   | PRI | NULL    |       |
+| panggilan  | char(4)     | YES  |     | NULL    |       |
+| nama       | varchar(35) | YES  |     | NULL    |       |
+| email      | varchar(50) | YES  |     | NULL    |       |
+| sex        | char(1)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.013 sec)
+
+MariaDB [pendaftaran]> use pendaftaran
+Database changed
+MariaDB [pendaftaran]> insert into tb_tamu values('1','Boi trimoyo','ujung berung','bo_i77@yahoo.com','085613548789');
+ERROR 1146 (42S02): Table 'pendaftaran.tb_tamu' doesn't exist
+MariaDB [pendaftaran]> insert into tb_tamu values('1','Boi trimoyo','ujung berung','bo_i77@yahoo.com','085613548789');
+ERROR 1146 (42S02): Table 'pendaftaran.tb_tamu' doesn't exist
+MariaDB [pendaftaran]> create table tb_tamu (no int(3), nama varchar(35), alamat varchar(60),email varchar(40), no_telepon varchar(15));
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [pendaftaran]> insert into tb_tamu values('1','Boi trimoyo','ujung berung','bo_i77@yahoo.com','085613548789');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [pendaftaran]> update tb_tamu set nama='irfan nurhudin' where nama="Boi trimoyo";
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [pendaftaran]> select * from tb_tamu;
++------+----------------+--------------+------------------+--------------+
+| no   | nama           | alamat       | email            | no_telepon   |
++------+----------------+--------------+------------------+--------------+
+|    1 | irfan nurhudin | ujung berung | bo_i77@yahoo.com | 085613548789 |
++------+----------------+--------------+------------------+--------------+
+1 row in set (0.000 sec)
+
+MariaDB [pendaftaran]> insert into tb_tamu values('2','Wasmui','Jatimulyo','boy@gmail.com','084567897890');insert into tb_tamu values('3','Sumarno','Surodadi','man@ymail.com','082469823578');insert into tb_tamuvalues('4','Sukamto','Kradenan','doi@gmail.com','083648763845');
+Query OK, 1 row affected (0.001 sec)
+
+Query OK, 1 row affected (0.001 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''4','Sukamto','Kradenan','doi@gmail.com','083648763845')' at line 1
+MariaDB [pendaftaran]> select * from tb_tamu;
++------+----------------+--------------+------------------+--------------+
+| no   | nama           | alamat       | email            | no_telepon   |
++------+----------------+--------------+------------------+--------------+
+|    1 | irfan nurhudin | ujung berung | bo_i77@yahoo.com | 085613548789 |
+|    2 | Wasmui         | Jatimulyo    | boy@gmail.com    | 084567897890 |
+|    3 | Sumarno        | Surodadi     | man@ymail.com    | 082469823578 |
++------+----------------+--------------+------------------+--------------+
+3 rows in set (0.000 sec)
+
+MariaDB [pendaftaran]> delete from tb_tamu where no='4';
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [pendaftaran]> select no, nama, alamat from tb_tamu;
++------+----------------+--------------+
+| no   | nama           | alamat       |
++------+----------------+--------------+
+|    1 | irfan nurhudin | ujung berung |
+|    2 | Wasmui         | Jatimulyo    |
+|    3 | Sumarno        | Surodadi     |
++------+----------------+--------------+
+3 rows in set (0.001 sec)
+
+MariaDB [pendaftaran]> select * from tb_tamu where alamat ='Kradenan';
+Empty set (0.000 sec)
+
+MariaDB [pendaftaran]> select * from tb_tamu where nama like '%su%';
++------+---------+----------+---------------+--------------+
+| no   | nama    | alamat   | email         | no_telepon   |
++------+---------+----------+---------------+--------------+
+|    3 | Sumarno | Surodadi | man@ymail.com | 082469823578 |
++------+---------+----------+---------------+--------------+
+1 row in set (0.000 sec)
+
+MariaDB [pendaftaran]> select * from tb_tamu order by nama;
++------+----------------+--------------+------------------+--------------+
+| no   | nama           | alamat       | email            | no_telepon   |
++------+----------------+--------------+------------------+--------------+
+|    1 | irfan nurhudin | ujung berung | bo_i77@yahoo.com | 085613548789 |
+|    3 | Sumarno        | Surodadi     | man@ymail.com    | 082469823578 |
+|    2 | Wasmui         | Jatimulyo    | boy@gmail.com    | 084567897890 |
++------+----------------+--------------+------------------+--------------+
+3 rows in set (0.001 sec)
+
+MariaDB [pendaftaran]> CREATE DATABASE universitas;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [pendaftaran]> use universitas
+Database changed
+MariaDB [universitas]> CREATE TABLE mahasiswa_rmik ( nim CHAR(9), nama CHAR(50), umur INT, tempat_lahir CHAR(50), IPK DECIMAL (3,2) );
+Query OK, 0 rows affected (0.025 sec)
+
+MariaDB [universitas]> INSERT INTO mahasiswa_rmik VALUES ('089045001', 'Andi Suryo', 23, 'Jakarta', 2.7);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [universitas]> CREATE TABLE mahasiswa_ekonomi ( nim CHAR(9), nama CHAR(50), umur
+    -> int(3)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 2
+MariaDB [universitas]> CREATE TABLE mahasiswa_ekonomi ( nim CHAR(9), nama CHAR(50), umur INT, tempat_lahir CHAR(50), IPK DECIMAL (3,2) );
+Query OK, 0 rows affected (0.027 sec)
+
+MariaDB [universitas]> INSERT INTO mahasiswa_ekonomi VALUES ('089023013', 'Alex Supriyanto', 23, 'Surabaya', 2.9);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [universitas]> CREATE USER 'udinus' IDENTIFIED BY '123';
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [universitas]> flush privileges;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [universitas]> \q
+Bye
+
+Farid@DESKTOP-POD4B38 d:\xampp
+# mysql -u udinus -p
+Enter password: ***
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 15
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+2 rows in set (0.009 sec)
+
+MariaDB [(none)]> /q
+    ->
+    -> \
+    -> :
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '/q
+
+
+:' at line 1
+MariaDB [(none)]> \q
+Bye
+
+Farid@DESKTOP-POD4B38 d:\xampp
+# grant allgrant all privileges on universitas.* to udinus@localhost;
+'grant' is not recognized as an internal or external command,
+operable program or batch file.
+
+Farid@DESKTOP-POD4B38 d:\xampp
+# flush privileges;
+'flush' is not recognized as an internal or external command,
+operable program or batch file.
+
+Farid@DESKTOP-POD4B38 d:\xampp
+# mysql -u udinus -p
+Enter password: ***
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 16
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [(none)]>
