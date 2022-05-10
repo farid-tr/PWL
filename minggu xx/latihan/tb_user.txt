@@ -1,0 +1,8 @@
+Buatlah tabel tb_user, dengan struktur tabel sebagai berikut:
+Field Type Length Keterangan
+username Char 20 Primary key
+Password Varchar 50
+Nama Varchar 100
+Hak Tinyint 1 1 (Admin), 2 (Operator)
+Buatkan halaman login untuk aplikasi yang dikerjakan pada Praktikum VII
+dengan user yang sudah terdata pada tabel tb_user diatas.
